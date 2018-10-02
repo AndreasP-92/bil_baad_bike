@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/modules/textboxio-client/textboxio/textboxio.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/adminNav.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/main.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/newArticle.css">
+
+    <title><%= page.title %></title>
+</head>
+<header>
+    <% include ../../.././partials/admin/adminNav %>
+</header>
+<body>
+    <main>
+        <h1>Artikler</h1>
+        <form action="/JSON/create/article" method="POST">
+            <div>
+                <label for="text">Overskrift :</label>
+                <br>
+                <input type="text" name="headline">
+            </div>
+            <div>
+                <textarea id="mytextarea" name="textbox"></textarea>
+            </div>
+            <div>
+                <label for="category">Kategori :</label>
+                <br>
+                <select name="category" id="">
+                    <option value="0">--Vælg--</option>
+                    <% cat.forEach(function(elm){ %>
+                        <option value="<%= elm.category_id %>"><%= elm.category_name %></option>
+                    <% }) %>
+                </select>
+            </div>
+            <div>
+                <label for="author">Forfatter : </label> 
+                <br>
+                <select name="author" id="">
+                        <option value="0">--Vælg--</option>
+                    <% author.forEach(function(elm){ %>
+                        <option value="<%= elm.author_id %>"><%= elm.author_name %></option>
+                    <% }) %>
+                </select>
+
+            </div>
+            <div>
+                <label for="time">Date/time:</label>
+                <br>
+                <input type="text" name="datetime">
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+          <script type="text/javascript">
+            var editor = textboxio.replace('#mytextarea');
+          </script>
+          
+    </main>
+</body>
+</html>
+<script src="/resources/js/jsAdmin/dashboard.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+

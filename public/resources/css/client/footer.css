@@ -1,0 +1,26 @@
+footer{
+    /* height:200px; */
+    background-color:#353537 ;
+    width:100%;
+}
+footer div{
+    width:33%;
+    float:left;
+    color:white;
+}
+footer div p{
+    font-size:18px;
+    margin-bottom: 10px;
+}
+.newsletterText{
+    /* margin-top:20%; */
+    height:35px;
+}
+.newsletterButton{
+    margin-top:10px;
+    margin-right:10px;
+    background-color:#E6E6E6 ;
+    height:35px;
+    border:none;
+    width:21%;
+}

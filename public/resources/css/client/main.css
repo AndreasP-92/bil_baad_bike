@@ -1,0 +1,220 @@
+
+/* 1170 */
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing: border-box;
+}
+
+.clearfix:after{
+    content:"";
+    display:table;
+    clear: both;
+}
+body{
+    background-color:#FFFFFF   ;
+    width:1170px;
+    margin:auto;
+}
+main{
+    width:100%;
+}
+.mainContent{
+    width:66%;
+    float:left;
+}
+/* MAIN CONTENT ======================================== */
+h1{
+    font-size: 36px ;
+    width:90%;
+    border-bottom: 3px solid black;
+    font-family: Oswald;
+}
+
+.mainContent article{
+    width:45%;
+    float:left;
+}
+.articleDate{
+    float:left;
+    font-size: 13px ;
+}
+.articleComent{
+    float:left;
+    font-size: 13px ;
+    text-decoration: none;
+    color:black;
+
+}
+.articlePreviewed{
+    float:left;
+    font-size: 13px ;
+
+
+}
+.articleText{
+    float:left;
+    font-size:14px ;
+    line-height: 1.25 ;
+}
+.articleCategory{
+    float:left;
+    font-size: 13px ;
+    text-decoration: none;
+    color:black;
+    width:100%;
+}
+.articleButton button{
+    width:100px;
+    height:50px;
+    background-color:#E6E6E6;
+    border:none;
+    float:left;
+}
+/* ARTICLE CONTENT =============================== */
+.articleContent{
+    width:66%;
+    float:left;
+}
+.specificArticleContent article{
+    width:100%;
+}
+.specificArticleDate{
+    float:left;
+    font-size: 13px ;
+    margin: 5px;
+    margin-left:0px;
+}
+.specificArticleComent{
+    float:left;
+    font-size: 13px ;
+    text-decoration: none;
+    color:black;
+    margin: 5px;
+}
+.specificArticlePreviewed{
+    float:left;
+    font-size: 13px ;
+    margin: 5px;
+
+
+}
+.specificArticleText{
+    float:left;
+    font-size:14px ;
+    line-height: 1.25 ;
+}
+.specificArticleCategory{
+    float:left;
+    font-size: 13px ;
+    text-decoration: none;
+    color:black;
+    width:100%;
+}
+.specificArticleButton button{
+    width:100px;
+    height:50px;
+    background-color:#E6E6E6;
+    border:none;
+    float:left;
+}
+
+/* REDAKTION CONTENT ============================== */
+
+.redaktionContent{
+    width:66%;
+    float:left;
+}
+.redaktionContent article{
+    padding:10px;
+}
+.redaktionContent img{
+    float:left;
+    margin-right:10px;
+}
+.redaName{
+    margin-bottom: 7px;
+}
+.redaMail{
+    margin-bottom: 7px;
+}
+.redaMail i{
+    margin-right:5px;
+}
+
+/* CONTACT CONTENT ============================== */
+
+.contactContent{
+    width:66%;
+    float:left;
+}
+.contactInfo{
+    float:left;
+    width:50%;
+}
+.contactInput01{
+    float:left;
+    width:45%;
+    margin-right:10px;
+}
+.contactInput01 input{
+    width:100%;
+    height:35px;
+}
+.contactInput02{
+    float:left;
+    width:45%;
+}
+.contactInput02 input{
+    width:100%;
+    height:35px;
+}
+.contactInput03 input{
+    width:91.2%;
+    margin-top:10px;
+    margin-bottom:10px;
+    height:35px;
+}
+.contactInput04 textarea{
+    width:91.2%;
+}
+/* ADDS ========================================== */
+.ads{
+    width:25%!important;
+    float:right;
+    background-color:#F0F0F0 
+}
+.ads h2{
+    font-size:18px;
+}
+.adSearchText{
+    width:40%;
+    height:35px;
+    margin:10px;
+}
+.adSearchSubmit{
+    border:none;
+    background-color:#E6E6E6;
+    width:12%;
+    height: 35px;
+    margin:10px;
+}
+/* MOST READ */
+
+.mostRead h2{
+    margin-left:15px;
+    border-bottom: 3px solid black;
+}
+.mostRead li{
+    margin-left:40px;
+}
+
+/* SPONSER */
+.sponser h2{
+    margin-left:15px;
+    border-bottom: 3px solid black; 
+}
+.sponser img{
+    margin:10px auto;
+    display:block;
+}

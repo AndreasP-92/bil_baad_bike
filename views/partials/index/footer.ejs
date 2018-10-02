@@ -1,0 +1,26 @@
+<div>
+    <% contact_info.forEach(function(elm){ %>
+        <p><%= elm.contact_name %></p>
+        <p><%= elm.contact_road %></p>
+        <p><%= elm.contact_city %></p>
+        <p><%= elm.contact_country %></p>
+    <% }) %>
+</div>
+<div>
+    <% contact_info.forEach(function(elm){ %>
+        <p>Telefon : <%= elm.contact_phone %></p>
+        <p>Fax : <%= elm.contact_fax %></p>
+        <p>E-mail : <%= elm.contact_email %></p>
+    <% }) %>
+    <!-- <p>Kontakt</p>
+    <p>Telefon</p>
+    <p>fax</p>
+    <p>email</p> -->
+</div>
+<div class="newsletter">
+    <p>Nyhedsbrev</p>
+    <input type="text" class="newsletterText" value="E-mailadresse">
+    <br>
+    <input type="submit" value="TILMELD" class="newsletterButton">
+    <input type="submit" value="FRAMELD" class="newsletterButton">
+</div>

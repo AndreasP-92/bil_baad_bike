@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="/modules/textboxio-client/textboxio/textboxio.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/adminNav.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/main.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/newArticle.css">
+
+    <title><%= page.title %></title>
+</head>
+<header>
+    <% include ../../.././partials/admin/adminNav %>
+</header>
+<body>
+    <main>
+        <a href="/admin/articles"> <- Tilbage</a>
+        <h1>Artikler</h1>
+        <h1>Preview:</h1>
+        <div>
+            <h2><%= article[0].article_headline %></h2>
+            <%- article[0].article_text %>
+        </div>
+        <form action="/JSON/create/article" method="POST">
+            <p>
+                Overskrift :
+            </p>
+            <label for="">Overskrift :</label>
+            <input type="text" name="headline" value="<%= article[0].article_headline %>">
+            <textarea id="mytextarea" name="textbox"><%- article[0].article_text %></textarea>
+            <p>
+                Kategori :
+            </p>
+            <select name="category" id="">
+                <% cat.forEach(function(elm){ %>
+                    <option value="<%= elm.category_id %>"><%= elm.category_name %></option>
+                <% }) %>
+            </select>
+            <p>
+                Forfatter :
+            </p>
+            <select name="author" id="">
+                <% author.forEach(function(elm){ %>
+                    <option value="<%= elm.author_id %>"><%= elm.author_name %></option>
+                <% }) %>
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+          <script type="text/javascript">
+            var editor = textboxio.replace('#mytextarea');
+          </script>
+
+    </main>
+</body>
+</html>
+<script src="/resources/js/jsAdmin/dashboard.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+

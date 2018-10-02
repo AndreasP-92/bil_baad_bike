@@ -1,0 +1,28 @@
+<!-- <div id="burger">
+    <i class="fa fa-bars" aria-hidden="true"></i>
+</div> -->
+
+<img src="/resources/media/index/logo.png" alt="">
+
+<nav>
+    <ul id="left_nav">
+        <li class="">
+            <a href="/"> FORSIDE </a>
+        </li>
+        <% nav.forEach(function(elm){ %>
+        <li>
+            <a href="<%= elm.nav_link %>"> <%= elm.nav_name %> </a>
+        </li>
+        <% }) %>
+        <li>
+            <a href="/arkivet"> ARKIVET </a>
+        </li>
+        <li>
+            <a href="/kontakt"> KONTAKT </a>
+        </li>
+        <li>
+            <a href="/redaktion"> REDAKTION </a>
+        </li>
+    </ul>
+
+</nav>
