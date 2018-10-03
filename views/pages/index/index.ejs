@@ -12,43 +12,25 @@
     <main class="clearfix">
         <div class="mainContent clearfix">
                 <h1>SENESTE ARTIKLER</h1>
-            <article class="clearfix">
-                <h2>
-                    Overskrift
-                </h2>
-                <p class="articleDate"><i class="fa fa-clock-o"></i> 14 marts 2016 kl 09:02</p>
-                <a class="articleComent" href=""><i class="fa fa-comments"></i> 0 KOMMENTARER</a>
-                <P class="articlePreviewed"><i class="fa fa-eye"></i> 0 VISNINGER</P>
-                <P class="articleText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.</P>
-                <a class="articleCategory" href=""><i class="fa fa-tag"></i>Bil</a>
-                
-                <a href="" class="articleButton">
-                    <!-- <input type="subtmit" value="LÆS MERE" > -->
-                    <button>LÆS MERE</button>
-                </a>
-            </article>
-            <article class="clearfix">
-                <h2>
-                    Overskrift
-                </h2>
-                <p class="articleDate"><i class="fa fa-clock-o"></i> 14 marts 2016 kl 09:02</p>
-                <a class="articleComent" href=""><i class="fa fa-comments"></i> 0 KOMMENTARER</a>
-                <P class="articlePreviewed"><i class="fa fa-eye"></i> 0 VISNINGER</P>
-                <P class="articleText">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                    voluptate velit esse cillum dolore eu fugiat nulla pariatur.</P>
-                <a class="articleCategory" href=""><i class="fa fa-tag"></i>Bil</a>
-                
-                <a href="" class="articleButton">
-                    <!-- <input type="subtmit" value="LÆS MERE" > -->
-                    <button>LÆS MERE</button>
-                </a>
-            </article>
-
+                <% articles.forEach(function(elm){ %>
+                    <article class="clearfix">
+                        <h2>
+                            <%= elm.article_headline %>
+                        </h2>
+                        <p class="articleDate"><i class="fa fa-clock-o"></i> <%= elm.article_date %></p>
+                        <a class="articleComent" href=""><i class="fa fa-comments"></i> <%= elm.article_comment %> 0 KOMMENTARER</a>
+                        <P class="articlePreviewed"><i class="fa fa-eye"></i> <%= elm.article_views %> VISNINGER</P>
+                        <div class="articleText">
+                            <%- elm.article_text %>...  
+                        </div>
+                        <a class="articleCategory" href=""><i class="fa fa-tag"></i> <%= elm.fk_article_category %></a>
+                        
+                        <a href="" class="articleButton">
+                            <!-- <input type="subtmit" value="LÆS MERE" > -->
+                            <button>LÆS MERE</button>
+                        </a>
+                    </article>
+                <% }) %>
         </div>
         <div class="ads">
             <input type="text" value="Søg i Arkivet" class="adSearchText">

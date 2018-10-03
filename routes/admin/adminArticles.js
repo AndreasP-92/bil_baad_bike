@@ -39,7 +39,20 @@ module.exports = (server) => {
         }
     });
 
-// POST EDIT =============================================
+// POST -------
+
+    server.post('/JSON/create/article',async function(req,res){
+        try{
+            const newArticle    = await insert.insertText(req.body) 
+            
+            res.redirect('/admin/articles')
+        }catch(e){
+            console.log(e)
+        }
+    });
+
+
+// EDIT ARTICLE =============================================
 
 server.get('/admin/articles/edit/:id',async function(req,res){
 
@@ -57,17 +70,15 @@ server.get('/admin/articles/edit/:id',async function(req,res){
         console.log(e)
     }
 });
-
-// POST ARTICLE =============================================
-
-    server.post('/JSON/create/article',async function(req,res){
-        try{
-            const newArticle    = await insert.insertText(req.body) 
-            
-            res.redirect('/admin/articles')
-        }catch(e){
-            console.log(e)
-        }
-    });
+// POST -----
+server.post('/JSON/edit/article/:id',async function(req,res){
+    try{
+        const newArticle    = await insert.updateText(req.body, req.params) 
+        
+        res.redirect('/admin/articles')
+    }catch(e){
+        console.log(e)
+    }
+});
 
 }

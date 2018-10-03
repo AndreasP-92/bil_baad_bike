@@ -7,6 +7,7 @@ module.exports = (server) => {
 
         var contact_info    = await getAll.contactInfo();
         var nav             = await getAll.nav();
+        var artcles         = await getAll.articlesLimit();
 
 
         try{
@@ -14,7 +15,8 @@ module.exports = (server) => {
             res.render('pages/index/index',{
                 'page'          : {'title' : 'Bil Båd og Bike Forside'},
                 'contact_info'  : contact_info,
-                'nav'           : nav
+                'nav'           : nav,
+                'articles'       : artcles
 
             })
         }catch(e){

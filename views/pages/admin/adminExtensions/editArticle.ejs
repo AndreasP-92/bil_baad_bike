@@ -21,7 +21,7 @@
             <h2><%= article[0].article_headline %></h2>
             <%- article[0].article_text %>
         </div>
-        <form action="/JSON/create/article" method="POST">
+        <form action="/JSON/edit/article/<%= article[0].article_id %>" method="POST">
             <p>
                 Overskrift :
             </p>

@@ -2,6 +2,8 @@ const db = require('../../config/database').connect()
 
 module.exports = {
 
+// ********************************************************************* ARTICLES **********************************************************************************
+
     category: function(category){
         return new Promise ((resolve,reject)=>{
             sql = `
@@ -59,5 +61,48 @@ module.exports = {
             })
         })
     },
+    articleCategory: function(category){
+        return new Promise ((resolve,reject)=>{
+            sql = `
+            SELECT
+                *
+            FROM(
+                tb_articles
+            INNER JOIN
+                tb_category ON fk_article_category = category_id )
+            WHERE
+                fk_article_category = ?
+            `
+            db.query(sql,category,function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
+    comments: function(article){
+        return new Promise ((resolve,reject)=>{
+            sql= `
+            SELECT
+                *
+            FROM(
+                tb_comments
+            INNER JOIN 
+                tb_articles ON fk_article = article_id)
+            WHERE 
+                fk_article = ?
+            `
+            db.query(sql,article,function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
+
 
 }

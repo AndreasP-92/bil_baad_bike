@@ -34,6 +34,7 @@ h1{
 .mainContent article{
     width:45%;
     float:left;
+    height:300px;
 }
 .articleDate{
     float:left;
@@ -56,6 +57,7 @@ h1{
     float:left;
     font-size:14px ;
     line-height: 1.25 ;
+    /* height:100px; */
 }
 .articleCategory{
     float:left;

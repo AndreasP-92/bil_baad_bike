@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../.././partials/index/head %>
+    <!-- <link rel="stylesheet" href="/resources/css/cssAdmin/main.css"> -->
+    <!-- <script src="/modules/textboxio-client/textboxio/textboxio.js"></script> -->
+    <!-- <link rel="stylesheet" href="/resources/css/cssAdmin/main.css"> -->
+    <!-- <link rel="stylesheet" href="/resources/css/cssAdmin/newArticle.css"> -->
+
+</head>
+<header>
+    <% include ../.././partials/index/header %>
+</header>
+
+<body>
+    <main class="clearfix">
+        <div class="articleContent clearfix">
+            <div>
+
+                <a href="/">Forside</a>
+                <a href="/<%= article[0].fk_article_category %>">/<%= article[0].fk_article_category %></a>
+                <p>/ Vis Artikkel</p>
+            </div>
+                <h1><%= article[0].article_headline %></h1>
+                
+                    <article class="clearfix">
+                        <p class="articleDate"><i class="fa fa-clock-o"></i> <%= article[0].article_date %></p>
+                        <a class="articleComent" href=""><i class="fa fa-comments"></i> <%= article[0].article_comment %> 0 KOMMENTARER</a>
+                        <P class="articlePreviewed"><i class="fa fa-eye"></i> <%= article[0].article_views %> VISNINGER</P>
+                        <div class="articleText">
+                            <%- article[0].article_text %>
+                        </div>
+                        <a class="articleCategory" href=""><i class="fa fa-tag"></i> <%= article[0].fk_article_category %></a>
+                        
+                        <a href="" class="articleButton">
+                            <!-- <input type="subtmit" value="LÆS MERE" > -->
+                            <a href="/arkivet/<%= article[0].article_id %>">
+                                <button>LÆS MERE</button>
+                            </a>
+                        </a>
+                    </article>
+<!-- DISPLAY COMMENTS -->
+                    <h2>KOMMENTARER</h2>
+                    <% comment.forEach(function(elm){ %>
+                        <div class="Comments">
+                            <h3><%= elm.comment_name %></h3>
+                            <p><%= elm.comment_date %></p>
+                            <p><%= elm.comment_text %></p>
+                        </div>
+                    <% }) %>
+<!-- INSERTING COMMENT -->
+                    <div class="yourComment">
+                        <form action="/JSON/post/comment/<%= article[0].article_id %>" method="POST">
+                            <h2>Din Kommentar</h2>
+                            <div>
+                                <label for="name">Dit Navn</label>
+                                <input type="text" name="name">
+                            </div>
+                            <div>
+                                <label for="email">Din E-mailadresse</label>
+                                <input type="text" name="email">
+                            </div>
+                            <div>
+                                <label for="comment">Kommentar</label>
+                                <textarea name="comment" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <button>UDFØR</button>
+                        </form>
+                    </div>
+
+
+        </div>
+        <div class="ads">
+            <input type="text" value="Søg i Arkivet" class="adSearchText">
+            <button class="adSearchSubmit"><i class="fa fa-search"></i></button>
+            <!-- <input type="submit" class="adSearchSubmit"> -->
+            
+            <div class="mostRead">
+                <h2> MEST LÆSTE </h2>
+                <li>Article 1</li>
+                <li>Article 2</li>
+                <li>Article 3</li>
+                <li>Article 4</li>
+                <li>Article 5</li>
+                <li>Article 6</li>
+            </div>
+            <div class="sponser">
+                <h2> SPONSER </h2>
+                
+                    <img src="/resources/media/ads/sponsers/bike_ad_4.gif" alt="Rekleme">
+              
+                    <img src="/resources/media/ads/sponsers/boat_ad_4.gif" alt="Rekleme">
+         
+                    <img src="/resources/media/ads/sponsers/boat_ad_5.gif" alt="Rekleme">
+           
+                    <img src="/resources/media/ads/sponsers/car_ad_1.gif" alt="Rekleme">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="clearfix">
+        <% include ../.././partials/index/footer %>
+    </footer>
+</body>
+<% include ../.././partials/index/afterFooter %>
+<!-- <script src="/resources/js/jsAdmin/dashboard.js"></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+</html>
