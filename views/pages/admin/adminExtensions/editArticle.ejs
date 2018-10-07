@@ -44,8 +44,16 @@
                     <option value="<%= elm.author_id %>"><%= elm.author_name %></option>
                 <% }) %>
             </select>
-            <button type="submit">Submit</button>
-          </form>
+            <br>
+            <%= article[0].article_date %><br>
+            <input type="datetime-local" name="date" value="<%= article[0].article_date %>">
+            <br>
+            <input type="submit" value="INDSÆT" name="submit" class="newsletterButton">
+            <!-- <input type="submit" name="delete" value="delete">  -->
+        </form>
+        <form action="/JSON/edit/article/<%= article[0].article_id %>" method="POST">
+            <input type="submit" value="SLET" name="submit" class="newsletterButton"> 
+        </form>
           <script type="text/javascript">
             var editor = textboxio.replace('#mytextarea');
           </script>

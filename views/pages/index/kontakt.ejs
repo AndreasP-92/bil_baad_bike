@@ -8,69 +8,57 @@
     <% include ../.././partials/index/header %>
 </header>
 
-<body>
+<body class="bodys">
     <main class="clearfix">
         <div class="contactContent clearfix">
                 <h1>REDAKTION</h1>
             <div class="contactInfo">
-                <h2>Adresse</h2>
-                <p>Vej nr</p>
-                <p>By</p>
-                <p>Land</p>
+                <% contact_info.forEach(function(elm){ %>
+                    <p><%= elm.contact_name %></p>
+                    <p><%= elm.contact_road %></p>
+                    <p><%= elm.contact_city %></p>
+                    <p><%= elm.contact_country %></p>
+                <% }) %>
             </div>
             <div class="contactInfo">
-                <h2>Kontakt Oplysninger</h2>
-                <p>Telefon:</p>
-                <p>Fax: </p>
-                <p>Email: asdsdfsdf@asdasd.dk</p>
+                <% contact_info.forEach(function(elm){ %>
+                    <p>Telefon : <%= elm.contact_phone %></p>
+                    <p>Fax : <%= elm.contact_fax %></p>
+                    <p>E-mail : <%= elm.contact_email %></p>
+                <% }) %>
             </div>
-            <form action="">
+            <div style="display:none;" class="success">
+                <h2>Tak for din besked</h2>
+            </div>
+            <div style="display:none;" class="unsuccess">
+                    <h2>Udfyld alle felter tak</h2>
+                </div>
+            <form action="/JSON/post/contactform" method="POST" id="contactForm">
                 <div>
                     <div class="contactInput01">
                         <p>Dit Navn</p>
-                        <input type="text">
+                        <input type="text" name="name" class="name">
                     </div>
                     <div class="contactInput02">
                         <p>Din Email-Adresse</p>
-                        <input type="text">
+                        <input type="text" name="email" class="mail">
                     </div>
                     <div class="contactInput03">
                         <p>Emne</p>
-                        <input type="text">
+                        <input type="text" name="topic" class="topic">
                     </div>
                     <div class="contactInput04">
                         <p>Bin Besked</p>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                        <textarea name="msg" id="" cols="30" rows="10" class="msg"></textarea>
+                    </div>
+                    <div class="newsletterbutton">
+                        <button id="submitButton">INDSEND</button>
                     </div>
                 </div>
             </form>
         </div>
-        <div class="ads">
-            <input type="text" value="Søg i Arkivet" class="adSearchText">
-            <button class="adSearchSubmit"><i class="fa fa-search"></i></button>
-            <!-- <input type="submit" class="adSearchSubmit"> -->
-            
-            <div class="mostRead">
-                <h2> MEST LÆSTE </h2>
-                <li>Article 1</li>
-                <li>Article 2</li>
-                <li>Article 3</li>
-                <li>Article 4</li>
-                <li>Article 5</li>
-                <li>Article 6</li>
-            </div>
-            <div class="sponser">
-                <h2> SPONSER </h2>
-                
-                    <img src="/resources/media/ads/sponsers/bike_ad_4.gif" alt="Rekleme">
-              
-                    <img src="/resources/media/ads/sponsers/boat_ad_4.gif" alt="Rekleme">
-         
-                    <img src="/resources/media/ads/sponsers/boat_ad_5.gif" alt="Rekleme">
-           
-                    <img src="/resources/media/ads/sponsers/car_ad_1.gif" alt="Rekleme">
-                </div>
-            </div>
+        <% include ../.././partials/index/sponserBar %>
+
         </div>
     </main>
 
@@ -79,5 +67,6 @@
     </footer>
 </body>
 <% include ../.././partials/index/afterFooter %>
+<script src="/resources/js/client/kontakt.js"></script>
 
 </html>

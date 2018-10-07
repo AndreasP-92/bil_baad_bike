@@ -4,7 +4,7 @@ const Hash = require('./hash');
 const User = function (username, passphrase) {
 	return new Promise(async (resolve, reject) => {
 		const hash = await Hash(passphrase);
-		db.execute('INSERT INTO users SET username = ?, passphrase = ?', [username, hash], (err, result) => {
+		db.execute('INSERT INTO users SET username = ?, passphrase = ?, user_role = 1', [username, hash], (err, result) => {
 			if (err) reject(err);
 			console.log(result);
 			resolve(true);

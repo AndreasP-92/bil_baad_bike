@@ -12,6 +12,7 @@ module.exports = (server) => {
         var contact_info    = await getAll.contactInfo();
         var nav             = await getAll.nav();
         var articles        = await getAll.articleOffset(req.params.page, category);
+        var mostRead        = await getAll.mostRead();
         var articleCategory = await getAllWhere.articleCategory(category);
 
         try{
@@ -20,7 +21,8 @@ module.exports = (server) => {
             'contact_info'      : contact_info,
             'nav'               : nav,
             'articles'          : articles,
-            'articleCategory'   : articleCategory
+            'articleCategory'   : articleCategory,
+            'mostRead'          : mostRead
 
         })
         }catch(e){

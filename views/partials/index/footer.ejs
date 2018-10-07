@@ -18,9 +18,11 @@
     <p>email</p> -->
 </div>
 <div class="newsletter">
-    <p>Nyhedsbrev</p>
-    <input type="text" class="newsletterText" value="E-mailadresse">
-    <br>
-    <input type="submit" value="TILMELD" class="newsletterButton">
-    <input type="submit" value="FRAMELD" class="newsletterButton">
+    <form action="/JSON/update/newsletter/user" method="POST">
+        <p>Nyhedsbrev</p>
+        <input type="email" class="newsletterText" name="mail" placeholder="E-mailadresse" required>
+        <br>
+        <input type="submit" value="TILMELD" name="sub" class="newsletterButton">
+        <input type="submit" value="FRAMELD" name="sub" class="newsletterButton">
+    </form>
 </div>

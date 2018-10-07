@@ -1,0 +1,21 @@
+<% articles.forEach(function(elm){ %>
+    <article class="clearfix">
+        <h2>
+            <%= elm.article_headline %>
+        </h2>
+        <p class="articleDate"><i class="fa fa-clock-o"></i> <%= elm.article_date %></p>
+        <a class="articleComent" href=""><i class="fa fa-comments"></i> <%= elm.article_comment_count %> KOMMENTARER</a>
+        <P class="articlePreviewed"><i class="fa fa-eye"></i> <%= elm.article_views %> VISNINGER</P>
+        <div class="articleText">
+            <%- elm.article_text %>...  
+        </div>
+        <a class="articleCategory" href=""><i class="fa fa-tag"></i> <%= elm.fk_article_category %></a>
+        
+        <a href="" class="articleButton">
+            <!-- <input type="subtmit" value="LÆS MERE" > -->
+            <a href="/arkivet/artikel/<%= elm.article_id %>" class="articleButton">
+                <button>LÆS MERE</button>
+            </a>
+        </a>
+    </article>
+<% }) %>

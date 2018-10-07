@@ -6,6 +6,8 @@ const session             = require('express-session');
 const passport            = require('passport');
 const cookieParser        = require('cookie-parser');
 const expressValidator    = require('express-validator');
+const fileUpload          = require('express-fileupload');
+
 
 
 
@@ -14,6 +16,13 @@ const expressValidator    = require('express-validator');
 const port          = 1337;
 const url           = "http://localhost:"
 const name          = "Bil Båd og Bike";
+
+// File upload ===========================================
+server.use(fileUpload({
+    limits          : { fileSize: 50 * 268 * 210 },
+    abortOnLimit    : true
+
+  }));
 
 // ENGINE ==============================
 

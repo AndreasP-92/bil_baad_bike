@@ -21,8 +21,9 @@ module.exports = (server) => {
 // ADMIN ===============================================================
 
     require('./admin/adminDashboard')(server);
-    require('./admin/adminProducts')(server);
+    require('./admin/adminSponsers')(server);
     require('./admin/adminUsers')(server);
     require('./admin/adminSupport')(server);
+    require('./admin/adminArticles')(server);
     require('./admin/adminArticles')(server);
 }

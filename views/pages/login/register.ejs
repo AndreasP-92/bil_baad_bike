@@ -18,7 +18,7 @@
         <div class="card card-container">
             <h2 class="login-register-title">Register</h2>            
             <p id="profile-name" class="profile-name-card"></p>
-            <form class="form-signin" method="post" action="/user/post" id="registerForm">
+            <form class="form-signin" method="post" action="/user/post" id="registerForm" encType="multipart/form-data">
 <!-- USERNAME ===================== -->
                 <span id="reauth-email" class="reauth-email"></span>
                 <input type="text" name="username" id="login__username" class="form-control input__field" placeholder="Username" required>
@@ -27,11 +27,22 @@
 				<input type="password"  class="form-control input__field" id="password01" name="passphrase" placeholder="Password" required>
 				<div id="passwordValid"></div>							
                 <input type="password"  class="form-control input__field" id="password02" placeholder="Re enter Password" required>
+<!-- NAME ===================== -->
+                <span id="reauth-email" class="reauth-email"></span>
+                <input type="text" name="name" id="login__username" class="form-control input__field" placeholder="Your Name" required>
+<!-- EMAIL ===================== -->
                 <input type="email"  name="email" class="form-control input__field" id="email" placeholder="You@email.com" required>
+<!-- KATEGORI ========================== -->
+                <select name="category" id="">
+                    <% category.forEach(function(elm){ %>
+                        <option value="<%= elm.category_name %>"><%= elm.category_name %></option>
+                    <% }) %>
+                </select>
+<!-- IMAGE OPLOAD ===================== -->
+                <input type="file" name="sampleFile" class="form-control input__field">
+<!-- TEXT ===================== -->
+                <textarea name="text" id="" class="form-control input__field" cols="30" rows="10"></textarea>
                 <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="submitButton" type="submit">Register</button>
             </form><!-- /form -->

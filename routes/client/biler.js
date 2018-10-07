@@ -13,8 +13,9 @@ module.exports = (server) => {
         var nav             = await getAll.nav();
         var articles        = await getAll.articleOffset(req.params.page, category);
         var articleCategory = await getAllWhere.articleCategory(category);
+        var mostRead        = await getAll.mostRead();
 
-        console.log('ARTICLE COUNT=========',articleCategory)
+        // console.log('ARTICLE COUNT=========',articleCategory)
 
 
         try{
@@ -23,7 +24,8 @@ module.exports = (server) => {
             'contact_info'      : contact_info,
             'nav'               : nav,
             'articles'          : articles,
-            'articleCategory'   : articleCategory
+            'articleCategory'   : articleCategory,
+            'mostRead'          : mostRead
 
         })
         }catch(e){

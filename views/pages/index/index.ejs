@@ -18,46 +18,22 @@
                             <%= elm.article_headline %>
                         </h2>
                         <p class="articleDate"><i class="fa fa-clock-o"></i> <%= elm.article_date %></p>
-                        <a class="articleComent" href=""><i class="fa fa-comments"></i> <%= elm.article_comment %> 0 KOMMENTARER</a>
+                        <a class="articleComent" href=""><i class="fa fa-comments"></i> <%= elm.article_comment_count %> KOMMENTARER</a>
                         <P class="articlePreviewed"><i class="fa fa-eye"></i> <%= elm.article_views %> VISNINGER</P>
                         <div class="articleText">
                             <%- elm.article_text %>...  
                         </div>
                         <a class="articleCategory" href=""><i class="fa fa-tag"></i> <%= elm.fk_article_category %></a>
                         
-                        <a href="" class="articleButton">
+                        <a href="/arkivet/artikel/<%= elm.article_id %>" class="articleButton">
                             <!-- <input type="subtmit" value="LÆS MERE" > -->
                             <button>LÆS MERE</button>
                         </a>
                     </article>
                 <% }) %>
         </div>
-        <div class="ads">
-            <input type="text" value="Søg i Arkivet" class="adSearchText">
-            <button class="adSearchSubmit"><i class="fa fa-search"></i></button>
-            <!-- <input type="submit" class="adSearchSubmit"> -->
-            
-            <div class="mostRead">
-                <h2> MEST LÆSTE </h2>
-                <li>Article 1</li>
-                <li>Article 2</li>
-                <li>Article 3</li>
-                <li>Article 4</li>
-                <li>Article 5</li>
-                <li>Article 6</li>
-            </div>
-            <div class="sponser">
-                <h2> SPONSER </h2>
-                
-                    <img src="/resources/media/ads/sponsers/bike_ad_4.gif" alt="Rekleme">
-              
-                    <img src="/resources/media/ads/sponsers/boat_ad_4.gif" alt="Rekleme">
-         
-                    <img src="/resources/media/ads/sponsers/boat_ad_5.gif" alt="Rekleme">
-           
-                    <img src="/resources/media/ads/sponsers/car_ad_1.gif" alt="Rekleme">
-                </div>
-            </div>
+        <% include ../.././partials/index/sponserBar %>
+        
         </div>
     </main>
 

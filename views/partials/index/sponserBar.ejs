@@ -1,0 +1,28 @@
+<div class="ads">
+    <form action="">
+        <input type="text" value="Søg i Arkivet" class="adSearchText">
+        <button class="adSearchSubmit"><i class="fa fa-search"></i></button>
+    </form>
+    <!-- <input type="submit" class="adSearchSubmit"> -->
+    
+    <div class="mostRead">
+        <h2> MEST LÆSTE </h2>
+        <% mostRead.forEach(function(elm){ %>
+            <a href="/arkivet/artikel/<%= elm.article_id %>">
+                <li><%= elm.article_headline %></li>
+            </a>
+        <% }) %>
+
+    </div>
+    <div class="sponser">
+        <h2> SPONSER </h2>
+        
+            <img src="/resources/media/ads/sponsers/bike_ad_4.gif" alt="Rekleme">
+      
+            <img src="/resources/media/ads/sponsers/boat_ad_4.gif" alt="Rekleme">
+ 
+            <img src="/resources/media/ads/sponsers/boat_ad_5.gif" alt="Rekleme">
+   
+            <img src="/resources/media/ads/sponsers/car_ad_1.gif" alt="Rekleme">
+        </div>
+    </div>

@@ -180,6 +180,29 @@ h1{
 .contactInput04 textarea{
     width:91.2%;
 }
+.body{
+    background-color:black !important;
+}
+.successAproved{
+    display:block !important;
+    position: absolute;
+    top:40%;
+    left:35%;
+    height:90px;
+    width:500px;
+    background-color:#353537;
+    z-index: 2;
+    border-radius:30px;
+    border:1px solid black;
+}
+.successAproved h2{
+    text-align: center;
+    margin-top:20px;
+    color:white;
+}
+.hide{
+    display:none!important;
+}
 /* ADDS ========================================== */
 .ads{
     width:25%!important;

@@ -1,6 +1,7 @@
-const getAll = require('../services/getAll');
-const insert = require('../services/insert');
-const getAllWhere = require('../services/getAllWhere');
+const getAll        = require('../services/getAll');
+const insert        = require('../services/insert');
+const deleteItem    = require('../services/delete');
+const getAllWhere   = require('../services/getAllWhere');
 
 
 module.exports = (server) => {
@@ -11,7 +12,7 @@ module.exports = (server) => {
 
         try{
             const allArticles   = await getAll.articles();
-            console.log(allArticles)
+            // console.log(allArticles)
             res.render('pages/admin/adminArticles',{
                 'page'      : {'title' : 'Admin Dashboard'},
                 'articles'  : allArticles
@@ -55,11 +56,15 @@ module.exports = (server) => {
 // EDIT ARTICLE =============================================
 
 server.get('/admin/articles/edit/:id',async function(req,res){
-
+    
     try{
+        
         const article       = await getAllWhere.article(req.params.id)
         const category      = await getAll.category()
         const author        = await getAll.author()
+
+        console.log(article[0].article_id)
+
         res.render('pages/admin/adminExtensions/editArticle',{
             'page'      : {'title' : 'Admin Dashboard'},
             'cat'       : category,
@@ -72,8 +77,17 @@ server.get('/admin/articles/edit/:id',async function(req,res){
 });
 // POST -----
 server.post('/JSON/edit/article/:id',async function(req,res){
+    console.log('submit====',req.body.submit)
+    var articleId   = req.params.id;
+    var submit      = req.body.submit
     try{
-        const newArticle    = await insert.updateText(req.body, req.params) 
+        if(submit == "SLET"){
+            console.log('deleting')
+            const deleteArticle = await deleteItem.article(articleId);
+        }
+        if(submit == "INDSÆT")
+            console.log('inserting')
+        // const newArticle    = await insert.updateText(req.body, req.params) 
         
         res.redirect('/admin/articles')
     }catch(e){

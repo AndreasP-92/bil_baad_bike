@@ -4,8 +4,9 @@
 
                 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/modules/textboxio-client/textboxio/textboxio.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    
+    <link rel="stylesheet" href="/resources/css/cssAdmin/newArticle.css">    
     <link rel="stylesheet" href="/resources/css/cssAdmin/adminNav.css">
     <link rel="stylesheet" href="/resources/css/cssAdmin/main.css">
     <link rel="stylesheet" href="/resources/css/cssAdmin/adminUsers.css">
@@ -34,53 +35,30 @@
                         <tr>
                             <th>Admin Role</th>
                             <th>Name</th>
-                            <th>Registration Date</th>
                             <th>E-mail address</th>
-                            <th>Premium Plan</th>
                             <th>Edit User</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% users.forEach(function(user){ %>
+                        <% authors.forEach(function(elm){ %>
                             <tr>
                                 <td>
                                     <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input">
+                                        <input type="checkbox" onclick="return false;" class="custom-control-input"
+                                        <% if (elm.fk_user_role == 1) { %>
+                                            checked
+                                        <% } %>
+                                        >
                                         <span class="custom-control-indicator"></span>
                                     </label>
                                 </td>
-                                <td><%= user.username %></td>
-                                <td>September 14, 2013</td>
-                                <td>jhlilk22@yahoo.com</td>
-                                <td>No</td>
-                                <td><a href="/admin/users/<%= user.id %>"><i class="fa fa-arrow-circle-o-right" style="font-size:24px"></i></a></td>
+                                <td><%= elm.author_name %></td>
+                                <td><%= elm.author_email %></td>
+                                <td><a href="/admin/users/<%= elm.author_id %>"><i class="fa fa-arrow-circle-o-right" style="font-size:24px"></i></a></td>
                             </tr>
                     
                         <% }) %>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>jhlilk22@yahoo.com</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                </label>
-                            </td>
-                            <td>John Lilki</td>
-                            <td>September 14, 2013</td>
-                            <td>jhlilk22@yahoo.com</td>
-                            <td>No</td>
-                        </tr>
+                       
                     </tbody>
                 </table>
             </div>

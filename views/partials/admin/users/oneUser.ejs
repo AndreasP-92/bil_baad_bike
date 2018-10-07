@@ -1,32 +1,67 @@
 <div style="margin-bottom: 250px;"></div>
-<a href="/admin/users">Back</a>
+<a href="/admin/users">Tilbage</a>
     
-        
+
+<img src="/resources/media/redaktion/<%= author[0].author_profile_img %>" style="width:10%; display:block; margin:auto;"alt="">
 <div class="card mb-5">
-    <div class="card-header">Fearures</div>
+    <div class="card-header">Profil Tekst</div>
     <div class="card-block p-0">
+            
         <table class="table table-bordered table-sm m-0">
 
             <thead class="">
                 <tr>
-                    <th>Name</th>
-                    <th>Registration Date</th>
-                    <th>E-mail address</th>
-                    <th>Premium Plan</th>
-                    <th>Delete User</th>
+                    <th>Bruger Rolle</th>
+                    <th>Navn</th>
+                    <!-- <th>Registration Date</th> -->
+                    <th>E-mail adresse</th>
+                    <th>Billede</th>
+                    <th>Opdater Redaktør</th>
+                    <th>Slet Redaktør</th>
                 </tr>
             </thead>
             <tbody>
                 
-                    <form action="">
+                    <form action="/JSON/update/author/<%= author[0].author_id %>" method="POST" encType="multipart/form-data">
                     <tr>
-                        <td><input type="text" placeholder=" <%= user[0].username %>"> </td>
-                        <td><input type="text" placeholder=" September 14, 2013"></td>
-                        <td><input type="text" placeholder="jhlilk22@yahoo.com"> </td>
-                        <td><input type="text" placeholder="no"> </td>
-                        <td><button>Delete</button></td>
+                        <td>
+                            <label class="custom-control custom-checkbox">
+                                <input name="userRole" type="checkbox" class="custom-control-input"
+                                <% if (author[0].fk_user_role == 1) { %>
+                                    checked
+                                <% } %>
+                                >
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                        </td>
+                        <td><input type="text" name="name" value=" <%= author[0].author_name %>"> </td>
+                        <!-- <td><input type="text" name="" value=" September 14, 2013"></td> -->
+                        <td><input type="text" name="email" value="<%= author[0].author_email %>"> </td>
+                        <td><input type="file" name="sampleFile"> </td>
+                        <td>
+                            <select name="category" id="">
+                                <% category.forEach(function(elm){ %>
+                                    <option value="<%= elm.category_navn %>"
+                                        <% if( author[0].fk_category == elm.category_name){ %>
+                                            selected
+                                        <% } %>
+                                        ><%= elm.category_name %></option>
+                                <% }) %>
+                            </select>
+                        </td>
+                        
+                        <td><input type="submit" name="sub" value="Opdater"></td>
+                        <td><input type="submit" name="sub" value="Slet" onclick="return confirm('Vil du Slette ?')"></td>
+                        
                     </tr>
+                    <div>
+                        <textarea id="mytextarea" name="textbox"><%= author[0].author_profile_tekst %></textarea>
+                    </div>
+
                     </form>
+                    <script type="text/javascript">
+                        var editor = textboxio.replace('#mytextarea');
+                    </script>
             </tbody>
         </table>
     </div>

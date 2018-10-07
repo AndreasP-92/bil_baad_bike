@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+                
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/adminNav.css">
+    <link rel="stylesheet" href="/resources/css/cssAdmin/main.css">
+    <title>Buy Shoes Dot Com</title>
+</head>
+    <% include ../.././partials/admin/adminNav %>
+</header>
+<body>
+    <main>
+        <h1>Products</h1>
+
+        <div class="choosingProjects">
+            <a href="/admin/sponsers/"> <button class="projectButtons"> <p> Vis Alle Sponsorer </p></button> </a>
+            <a href="/admin/sponser/create"> <button class="projectButtons"><p> Lav Ny Sponser </p></button> </a>
+            
+        </div>
+
+        <% if(productPageCheck == ""){ %>
+
+           
+            <% sponsers.forEach(function(elm){ %>
+                <a href="/admin/sponser/update/<%= elm.sponsers_id %>">
+                    <h2><%= elm.sponsers_name %></h2>
+                    <p><%= elm.fk_category %></p>
+                    <img src="/resources/media/ads/sponsers/<%= elm.sponsers_img %>" alt="<%= elm.sponsers_name %>">
+                </a>
+                <% }) %>
+
+    
+        <% } else if(productPageCheck == "update"){ %>
+            <p>update</p>
+            <form action="/JSON/update/sponser/<%= sponser[0].sponsers_id %>" method="POST" encType="multipart/form-data">
+                <input type="text" name="name" class="form-control input__field" value="<%= sponser[0].sponsers_name %>">
+                <input type="file" name="sampleFile" class="form-control input__field" value="/resources/media/ads/sponsers/bike_ad_4.gif">
+                <select name="category" id="">
+                    <% category.forEach(function(elm){ %>
+                        <option value="<%= elm.category_id %>"><%= elm.category_name %></option>
+
+                    <% }) %>
+                </select>
+                <input type="submit" name="sub" value="Slet">
+                <input type="submit" name="sub" value="Opdater Sponser">
+            </form>
+                
+        <% } else if(productPageCheck == "create"){ %>
+            <p>create</p>
+            <form action="/JSON/insert/sponser" method="POST" encType="multipart/form-data">
+                <input type="text" name="name" class="form-control input__field">
+                <input type="file" name="sampleFile" class="form-control input__field">                
+                <select name="category" id="">
+                        <% category.forEach(function(elm){ %>
+                            <option value="<%= elm.category_id %>"><%= elm.category_name %></option>
+    
+                        <% }) %>
+                    </select>
+                <input type="submit" value="indsæt">
+            </form>
+
+        <% } %>
+    </main>
+</body>
+</html>
+
+<script src="/resources/js/jsAdmin/dashboard.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
