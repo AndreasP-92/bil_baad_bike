@@ -12,8 +12,10 @@ module.exports = (server) => {
         var contact_info    = await getAll.contactInfo();
         var nav             = await getAll.nav();
         var articles        = await getAll.articleOffset(req.params.page, category);
+        console.log('articles===================',articles)
         var mostRead        = await getAll.mostRead();
         var articleCategory = await getAllWhere.articleCategory(category);
+        var ads             = await getAll.sponsers();
 
         try{
         res.render('pages/index/bikes',{
@@ -22,7 +24,8 @@ module.exports = (server) => {
             'nav'               : nav,
             'articles'          : articles,
             'articleCategory'   : articleCategory,
-            'mostRead'          : mostRead
+            'mostRead'          : mostRead,
+            'ads'               : ads
 
         })
         }catch(e){

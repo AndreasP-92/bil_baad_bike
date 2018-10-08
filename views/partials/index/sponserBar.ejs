@@ -1,6 +1,6 @@
 <div class="ads">
-    <form action="">
-        <input type="text" value="Søg i Arkivet" class="adSearchText">
+    <form action="/search" method="POST">
+        <input type="text" name="search" placeholder="Søg i Arkivet" class="adSearchText">
         <button class="adSearchSubmit"><i class="fa fa-search"></i></button>
     </form>
     <!-- <input type="submit" class="adSearchSubmit"> -->
@@ -16,13 +16,10 @@
     </div>
     <div class="sponser">
         <h2> SPONSER </h2>
-        
-            <img src="/resources/media/ads/sponsers/bike_ad_4.gif" alt="Rekleme">
+            <% ads.forEach(function(elm){ %>
+                <img src="/resources/media/ads/sponsers/<%= elm.sponsers_img %>" alt="Rekleme">
+            <% }) %>
+            <a href="/sponser">Din Sponser her?</a>
       
-            <img src="/resources/media/ads/sponsers/boat_ad_4.gif" alt="Rekleme">
- 
-            <img src="/resources/media/ads/sponsers/boat_ad_5.gif" alt="Rekleme">
-   
-            <img src="/resources/media/ads/sponsers/car_ad_1.gif" alt="Rekleme">
         </div>
     </div>

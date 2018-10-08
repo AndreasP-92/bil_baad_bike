@@ -11,6 +11,7 @@ module.exports = (server) => {
         let contact_info    = await getAll.contactInfo();
         let nav             = await getAll.nav();
         let mostRead        = await getAll.mostRead();
+        var ads             = await getAll.sponsers();
 
 
         try{
@@ -18,7 +19,8 @@ module.exports = (server) => {
             'page'          : {'title' : 'Bil Båd og Bike Kontakt'},
             'contact_info'  : contact_info,
             'nav'           : nav,
-            'mostRead'      : mostRead
+            'mostRead'      : mostRead,
+            'ads'           : ads
 
 
 

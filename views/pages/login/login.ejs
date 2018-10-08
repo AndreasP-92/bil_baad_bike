@@ -17,7 +17,7 @@
     <div class="container">
         <div class="card card-container">
                 
-                <a href="/" class="forgot-password"><i class="fa fa-caret-left"></i> Back to website</a>
+                <a href="/" class="forgot-password"><i class="fa fa-caret-left"></i> Tilbage til Webside </a>
             
             <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
             <h2 class="login-register-title" >Login</h2>
@@ -25,19 +25,16 @@
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" method="post"  id="registerForm">
                 <span id="reauth-email" class="reauth-email"></span>
-				<input type="text" name="username" id="login__username" class="form-control input__field" placeholder="you@email.com" required>
-				<div id="userValid"></div>			
+<!-- USERNAME -->
+				<input type="text" name="username" id="login__username" class="form-control input__field" placeholder="Brugernavn" required>
+                <div id="userValid"></div>		
+<!-- PASSWORD -->
 				<input type="password"  class="form-control input__field" id="password01" name="passphrase" placeholder="Password" required>
 				<div id="passwordValid"></div>							
                 <div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block btn-signin" id="submitButton" type="submit">Login</button>
             </form><!-- /form -->
-            <a href="/register" class="forgot-password">Sign up</a>
-            <a href="/#" class="forgot-password">Forgot Password?</a>
         </div><!-- /card-container -->
     </div><!-- /container -->
 <!-- SUCCESS ====================== -->

@@ -4,22 +4,26 @@ const deleteItem    = require('../services/delete');
 
 module.exports = (server) => {
 
+// MAIN =======================
 
     server.get('/',async function(req,res){
 
         var contact_info    = await getAll.contactInfo();
         var nav             = await getAll.nav();
-        var artcles         = await getAll.articlesLimit();
+        var articles        = await getAll.articlesLimit();
         var mostRead        = await getAll.mostRead();
-        console.log('articles=================',artcles)
+        var ads             = await getAll.sponsers();
+
+        console.log('articles=================',articles)
         try{
 
             res.render('pages/index/index',{
                 'page'          : {'title' : 'Bil Båd og Bike Forside'},
                 'contact_info'  : contact_info,
                 'nav'           : nav,
-                'articles'       : artcles,
-                'mostRead'      : mostRead
+                'articles'      : articles,
+                'mostRead'      : mostRead,
+                'ads'           : ads
 
             })
         }catch(e){
@@ -44,31 +48,4 @@ module.exports = (server) => {
             console.log(error)
         }
     })
-// SEARCH =======================================
-
-    server.post('/search', async function (req,res){
-
-        let search = req.body
-
-        try {
-            let search        = await getAll.search(search)
-            let contact_info    = await getAll.contactInfo();
-            let nav             = await getAll.nav();
-            let articles        = await getAll.allArticlesOffset(page);
-            let mostRead        = await getAll.mostRead();
-            let articleCount    = await getAll.articles()
-            res.render('/pages/index/search',{
-                'contact_info'  : contact_info,
-                'nav'           : nav,
-                'articles'      : articles,
-                'mostRead'      : mostRead,
-                'articleCount'  : articleCount
-
-
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    })
-
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include ../.././partials/index/head %>
+</head>
+<header>
+    <% include ../.././partials/index/header %>
+</header>
+
+<body>
+    <main class="clearfix">
+        <div class="mainContent clearfix">
+                <h1>SPONSOR</h1>
+                <div>
+<!-- TEXT -->
+                    <%- sponserText[0].site_text %>
+                </div>
+                <div>
+                    <table class="table table-bordered table-sm m-0">
+<!-- SPONSER SALE -->
+                        <thead class="" style="width:100%;">
+                            <tr>
+                                <th style="width:75%;">Visninger</th>
+                                <th style="padding-right:20px;">Pris Per Visning</th>
+                            </tr>
+                        </thead>
+                        <% sponserSale.forEach(function(elm){ %>
+                        <tbody>
+                            <tr>
+                                <td><%= elm.price_views %></td>
+                                <td><%= elm.price_per_view %></td>
+                            </tr>
+                        </tbody>
+                        <% }) %>
+                    </table>
+                </div>
+  
+        </div>
+        <% include ../.././partials/index/sponserBar %>
+        
+        </div>
+    </main>
+
+    <footer class="clearfix">
+        <% include ../.././partials/index/footer %>
+    </footer>
+</body>
+<% include ../.././partials/index/afterFooter %>
+
+</html>

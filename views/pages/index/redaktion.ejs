@@ -12,18 +12,18 @@
     <main class="clearfix">
         <div class="redaktionContent clearfix">
                 <h1>REDAKTION</h1>
-                <h2>Biler</h2>
-            <article class="clearfix">
-                <img src="/resources/media/redaktion/lil.jpg" alt="Lisa">
-                <p class="redaName">Lisa</p>
-                <p class="redaMail"><i class="fa fa-envelope"></i>Mail@email.dk</p>
-                <p class="redaText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                        voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
-            </article>
+                <% author.forEach(function(elm){ %>
+                    <% if(elm.fk_user_role == 2){ %>
+                        <h2><%= elm.fk_category %></h2>
+                            <article class="clearfix">
+                                <img style="max-width:12%;" src="/resources/media/redaktion/<%= elm.author_profile_img %>" alt="Lisa">
+                                <p class="redaName"><%= elm.author_name %></p>
+                                <p class="redaMail"><i class="fa fa-envelope"></i><%= elm.author_email %></p>
+                                <p class="redaText"><%= elm.author_profile_tekst %></p>
+                            </article>
+                    <% } %>
+
+                <% }) %>
 
 
         </div>

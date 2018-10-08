@@ -1,4 +1,4 @@
-<div style="margin-bottom: 250px;"></div>
+<!-- <div style="margin-bottom: 250px;"></div> -->
 <a href="/admin/users">Tilbage</a>
     
 
@@ -11,9 +11,8 @@
 
             <thead class="">
                 <tr>
-                    <th>Bruger Rolle</th>
+                    <th>Admin Rolle</th>
                     <th>Navn</th>
-                    <!-- <th>Registration Date</th> -->
                     <th>E-mail adresse</th>
                     <th>Billede</th>
                     <th>Opdater Redaktør</th>
@@ -23,6 +22,7 @@
             <tbody>
                 
                     <form action="/JSON/update/author/<%= author[0].author_id %>" method="POST" encType="multipart/form-data">
+<!-- USER ROLE -->
                     <tr>
                         <td>
                             <label class="custom-control custom-checkbox">
@@ -34,14 +34,17 @@
                                 <span class="custom-control-indicator"></span>
                             </label>
                         </td>
-                        <td><input type="text" name="name" value=" <%= author[0].author_name %>"> </td>
-                        <!-- <td><input type="text" name="" value=" September 14, 2013"></td> -->
-                        <td><input type="text" name="email" value="<%= author[0].author_email %>"> </td>
+<!-- NAME -->
+                        <td><input type="text" name="name" value="<%= author[0].author_name %>"></td>
+<!-- EMAIL -->
+                        <td><input type="text" name="email" value="<%= author[0].author_email %>"></td>
+<!-- PROFILE PICTURE -->
                         <td><input type="file" name="sampleFile"> </td>
                         <td>
+<!-- AUTHOR CATEGORY -->
                             <select name="category" id="">
                                 <% category.forEach(function(elm){ %>
-                                    <option value="<%= elm.category_navn %>"
+                                    <option value="<%= elm.category_name %>"
                                         <% if( author[0].fk_category == elm.category_name){ %>
                                             selected
                                         <% } %>
@@ -49,7 +52,7 @@
                                 <% }) %>
                             </select>
                         </td>
-                        
+<!-- SUBMIT BUTTONS -->
                         <td><input type="submit" name="sub" value="Opdater"></td>
                         <td><input type="submit" name="sub" value="Slet" onclick="return confirm('Vil du Slette ?')"></td>
                         

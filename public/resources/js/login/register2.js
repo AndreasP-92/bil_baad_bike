@@ -47,30 +47,31 @@ function registerValidate (){
 
             for (var i = 0; i < data.length; i++){
                 // Looking if there's a user already
-                if (data[i].username === getUser){
+                if (data[i].username === getUser ){
                     // found it
                     console.log('User found', getUser)
                     console.log(data[i].username);
                     break;
-                    // alert('User already exist')
+                    alert('User already exist')
 
-                    // document.write('<!---');
+                    document.write('<!---');
 
-                    // window.stop();
-                    // e.preventDefault();
-                    // window.top.location.href ="#";
-                    // controller.abort();
+                    window.stop();
+                    e.preventDefault();
+                    window.top.location.href ="#";
+                    controller.abort();
 
-                    // document.getElementById('submitButton').addEventListener('click',function(event){
-                    //     event.preventDefault();
-                    // });
+                    document.getElementById('submitButton').addEventListener('click',function(event){
+                        event.preventDefault();
+                    });
 
-                    // var p       = document.createElement('p');
+                    var p       = document.createElement('p');
     
-                    // var aText   = document.createTextNode('Username Exist Aldready');
-                    //     p.appendChild(aText)
+                    var aText   = document.createTextNode('Bruger Findes Allerede');
+                        p.appendChild(aText)
     
-                    //     validDiv.appendChild(p)
+                        validDiv.appendChild(p)
+                    
     
 
                 }

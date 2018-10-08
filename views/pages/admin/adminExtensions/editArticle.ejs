@@ -25,17 +25,29 @@
             <p>
                 Overskrift :
             </p>
+<!-- HEADLINE -->
             <label for="">Overskrift :</label>
             <input type="text" name="headline" value="<%= article[0].article_headline %>">
+            <br>
+<!-- DATE -->
+            <%= article[0].article_date %><br>
+
+<!-- TEXT -->
             <textarea id="mytextarea" name="textbox"><%- article[0].article_text %></textarea>
+<!-- CATEGORY -->
             <p>
                 Kategori :
             </p>
             <select name="category" id="">
                 <% cat.forEach(function(elm){ %>
-                    <option value="<%= elm.category_id %>"><%= elm.category_name %></option>
+                    <option value="<%= elm.category_id %>"
+                        <% if( article[0].fk_article_category == elm.category_id) { %>
+                            selected
+                        <% } %>
+                        ><%= elm.category_name %></option>
                 <% }) %>
             </select>
+<!-- AUTHOR -->
             <p>
                 Forfatter :
             </p>
@@ -45,18 +57,36 @@
                 <% }) %>
             </select>
             <br>
-            <%= article[0].article_date %><br>
-            <input type="datetime-local" name="date" value="<%= article[0].article_date %>">
-            <br>
             <input type="submit" value="INDSÆT" name="submit" class="newsletterButton">
             <!-- <input type="submit" name="delete" value="delete">  -->
         </form>
         <form action="/JSON/edit/article/<%= article[0].article_id %>" method="POST">
-            <input type="submit" value="SLET" name="submit" class="newsletterButton"> 
+            <input type="submit" value="SLET" onclick="return confirm('Er du sikker?')" name="submit" class="newsletterButton"> 
         </form>
           <script type="text/javascript">
             var editor = textboxio.replace('#mytextarea');
           </script>
+<!-- COMMENTS -->
+        <h2>Kommentarer</h2>
+          <% comment.forEach(function(elm){ %>
+                <form action="/JSON/edit/comment/<%= elm.comment_id %>" method="POST">
+
+                    <p><%= elm.comment_email %></p>
+                    <p><%= elm.comment_date %></p>
+                    <div>
+                        <label for="commentHeadline">Comment Headline</label>
+                        <input type="text" name="commentHeadline" value="<%= elm.comment_name %>">
+                    </div>
+
+                    <div>
+                        <label for="commentText">Comment Text</label>
+                        <input type="text" name="commentText" value="<%= elm.comment_text %>">
+                    </div>
+                    <input type="submit" value="Opdater" name="submit" class="newsletterButton"> 
+                    <input type="submit" value="Slet"onclick="return confirm('Er du Sikker?')" name="submit" class="newsletterButton"> 
+
+                </form>
+            <% }) %>    
 
     </main>
 </body>

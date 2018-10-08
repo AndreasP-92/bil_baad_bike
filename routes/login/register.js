@@ -4,10 +4,12 @@ const getAll 		= require('../services/getAll');
 const { body } 		= require('express-validator/check');
 const getOne		= require('../services/getOne');
 const insert		= require('../services/insert');
+const authenticate 	= require('../../middleware/authenticateAuthor');
+
 
 
 module.exports = function (server) {
-	server.get('/register', async (req, res) => {
+	server.get('/register', authenticate, async (req, res) => {
 
 		try {
 

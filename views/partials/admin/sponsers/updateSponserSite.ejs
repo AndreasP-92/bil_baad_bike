@@ -1,0 +1,28 @@
+
+<form action="/JSON/update/sponser/site/now/<%= sponserText[0].site_id %>" method="POST">
+    <div>
+        <textarea name="sponserText" id="" cols="100" rows="10"><%- sponserText[0].site_text %></textarea>
+    </div>
+    <input type="submit" value="Opdater">
+
+</form>
+    <table class="table table-bordered table-sm m-0">
+        <thead class="" style="width:100%;">
+            <tr>
+                <th style="width:40%;">Visninger</th>
+                <th style="padding-right:20px;">Pris Per Visning</th>
+                <th style="padding-right:20px;">Slet</th>
+            </tr>
+        </thead>
+        <% sponserSale.forEach(function(elm){ %>
+            <form action="/JSON/update/sponser/siteprice/<%= elm.price_id %>" method="POST">
+            <tbody>
+                <tr>
+                    <td><input type="text" value="<%= elm.price_views %>" name="sponserViews"></td>
+                    <td><input type="text" value="<%= elm.price_per_view %>" name="sponserPriceViews"></td>
+                    <td><input type="submit" value="Opdater"></td>
+                </tr>
+            </tbody>
+        </form>
+        <% }) %>
+    </table>

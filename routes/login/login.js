@@ -21,52 +21,11 @@ module.exports = function (server) {
 	})
 
 	server.post('/login', passport.authenticate('local', {
-		'successRedirect': '/profile',
+		'successRedirect': '/admin',
 		'failureRedirect': '/login',
 		'failureFlash': true
 	}));
 
-	// server.post('/login',function(req,res){
-
-	// 	req.checkBody('username', 'Username is required').notEmpty();
-	// 	req.checkBody('password', 'Password is required').notEmpty();
-	// 	console.log(req.checkBody())
-	// 	//validate 
-	// 	var errors = req.validationErrors();
-	
-	// 	if (errors) {
-	// 		// console.log('error')
-	// 		// req.session.loginFailed = 'Invalid user or '
-	// 		// console.log()
-	// 		res.render('pages/login/login',{user:null,frm_messages:errors});
-	
-	// 	}
-	// 	else{
-	// 		console.log('success')
-	// 		passport.authenticate('local',{
-	// 			successRedirect:'/profile',
-	// 			failureRedirect: '/login',
-	// 			failureFlash : true  
-	// 		})(req,res); // <---- ADDD THIS
-	// 	}
-	// });
-
-
-	// server.post('/login/initialized',function(req,res){
-	// 	var errors = req.validationErrors();
-	// 	if(errors){
-	// 		res.render('pages/login/login',{
-	// 			user : null,frm_messages:errors
-	// 		})
-	// 	}else{
-
-	// 		passport.authenticate('local', {
-	// 			'successRedirect': '/profiles',
-	// 			'failureRedirect': '/loginss',
-	// 			'failureFlash': false
-	// 		})(req,res);
-	// 	}	
-	// }); 
 
 	server.get('/logout', (req, res) => {
 		req.session.destroy((err) => {

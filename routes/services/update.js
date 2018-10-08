@@ -5,13 +5,52 @@ const db = require('../../config/database').connect()
 module.exports = {
 
 // ************************************************************************************ ADMIN SPONSER *******************************************************************
-
+sponserText: function(sponserText, sponserSiteId){
+    return new Promise ((resolve,reject)=>{
+        console.log('service læst!!')
+        sql = `
+        UPDATE
+            tb_sponser_site
+        SET
+            site_text   = '${sponserText}'
+        WHERE
+            site_id     = '${sponserSiteId}'
+        `
+        db.query(sql, function(err,data){
+            if(err){
+                reject(err)
+            }else{
+                resolve(data)
+            }
+        })
+    })
+},
+sponserPrice: function(sponserPrice, sponserPriceViews, sponserPriceId){
+    return new Promise ((resolve,reject)=>{
+        console.log('service price læst!!')
+        sql = `
+        UPDATE
+            tb_sponser_price
+        SET
+            price_views     = '${sponserPrice}',
+            price_per_view  = '${sponserPriceViews}'
+        WHERE
+            price_id        = '${sponserPriceId}'
+        `
+        db.query(sql, function(err,data){
+            if(err){
+                reject(err)
+            }else{
+                resolve(data)
+            }
+        })
+    })
+},
 
 // ************************************************************************************ ADMIN AUTHOR *******************************************************************
 
 author: function(authorId, name, userRole, email, sampleFile, textBox, category){
     return new Promise ((resolve,reject)=>{
-        // let prepare = [name, email, textBox, sampleFile, category, userRole];
         console.log('service læst!!')
         sql = `
         UPDATE
@@ -27,6 +66,27 @@ author: function(authorId, name, userRole, email, sampleFile, textBox, category)
             author_id               = ${authorId}
         `
         console.log('sql=============',sql)
+        db.query(sql, function(err,data){
+            if(err){
+                reject(err)
+            }else{
+                resolve(data)
+            }
+        })
+    })
+},
+user: function(userRole, email){
+    return new Promise ((resolve,reject)=>{
+        // let prepare = [name, email, textBox, sampleFile, category, userRole];
+        console.log('service læst!!')
+        sql = `
+        UPDATE
+            users
+        SET
+            user_role   = ${userRole}
+        WHERE
+            email       = '${email}'
+        `
         db.query(sql, function(err,data){
             if(err){
                 reject(err)
@@ -68,21 +128,20 @@ sponser: function(sponser_id, sponser_name, sponser_category, sampleFile){
 
     views: function(view, articleId){
         return new Promise ((resolve,reject)=>{
-            let string = [view];
+            let prepare = [view];
+
+            console.log(view)
 
             sql= `
-            INSERT INTO
-                tb_authors
+            UPDATE
+                tb_articles
             SET
-                author_name             = ?,
-                author_email            = ?,
-                author_profile_img      = ?,
-                author_profile_tekst    = ?,
-                fk_category             = ?
+                article_views    = ?
             WHERE
                 article_id = ${articleId}
             `
-            db.query(sql,string, function(err,data){
+            db.query(sql,prepare, function(err,data){
+                console.log(data)
                 if(err){
                     reject(err)
                 }else{

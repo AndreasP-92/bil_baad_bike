@@ -9,7 +9,16 @@
         <div class="articleText">
             <%- elm.article_text %>...  
         </div>
-        <a class="articleCategory" href=""><i class="fa fa-tag"></i> <%= elm.fk_article_category %></a>
+        <a class="articleCategory" href=""><i class="fa fa-tag"></i> 
+            <% if(elm.fk_article_category == 1){ %>
+                Biler
+            <% } else if (elm.fk_article_category == 2){ %>
+                Både
+            <% } else if ( elm.fk_article_category == 3){ %>
+                Bikes
+            <% } %>
+        </a>
+        <br>
         
         <a href="" class="articleButton">
             <!-- <input type="subtmit" value="LÆS MERE" > -->

@@ -8,6 +8,8 @@ module.exports = (server) => {
         var contact_info    = await getAll.contactInfo();
         var mostRead        = await getAll.mostRead();
         var nav             = await getAll.nav();
+        var authors         = await getAll.author();
+        var ads             = await getAll.sponsers();
 
 
         try{
@@ -15,7 +17,10 @@ module.exports = (server) => {
             'page'  : {'title' : 'Bil Båd og Bike Redaktionen'},
             'contact_info'  : contact_info,
             'nav'           : nav,
-            'mostRead'      : mostRead
+            'mostRead'      : mostRead,
+            'author'        : authors,
+            'ads'           : ads
+
 
         })
         }catch(e){

@@ -24,52 +24,65 @@ module.exports = {
         })
     },
 
+// ********************************************************************* LOGIN **********************************************************************************
+
+
+    user: function(username){
+        return new Promise ((resolve,reject)=>{
+            sql = `
+            SELECT
+                *
+            FROM
+                users
+            WHERE
+                username = ?
+            `
+            db.query(sql,username,function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
 // ********************************************************************* ARTICLES **********************************************************************************
 
     search: function (search) {
-        if(txt == ""){
-            txt = "_"
+        if(search == ""){
+            search = "_"
         }
-        if(headline == ""){
-            txt = "_"
-        }
-        console.log('category ========',category)
-
-        if (category == 0 || category == undefined) {
-            category = []
-            for (i = 0; i < 10; i++)category.push(i);
-        }
-
-        if (author == 0 || author == undefined) {
-            author = []
-            for (i = 0; i < 10; i++)author.push(i);
-        }
+        console.log('searvice search ==========',search)
 
         // console.log('service: ', 'txt=', txt, 'category=', category, 'price=', price)
-        let prepare = [category , price]
+        let prepare = ['%' + search + '%', '%' + search + '%', '%' + search + '%', '%' + search + '%']
         return new Promise((resolve, reject) => {
-            console.log(txt)
+            console.log(search)
             // category
             console.log(prepare)
             var sql = `
                 SELECT 
-                    *
-                FROM((
+                    article_id,
+                    article_headline,
+                    article_date,
+                    article_views,
+                    article_comment_count,
+                    SUBSTRING(article_text, 1, 500) AS article_text,
+                    fk_article_author,
+                    fk_article_category
+                FROM
                     tb_articles 
-                INNER JOIN 
-                    tb_author ON fk_article_author = author_id)
-                Inner JOIN 
-                    tb_category ON fk_article_category = category_id)
+
                 WHERE
-                article_name like '%${txt}%' and
-                article_healine like '%${headline}%' and
-                fk_article_author in (?) and
-                fk_article_category in (?) and                    
+                article_headline    LIKE ? OR
+                article_text        LIKE ? OR
+                fk_article_author   LIKE ? OR
+                fk_article_category LIKE ? 
                 LIMIT
-                    6
+                    3
             `;
             console.log('sql====================',sql)
-            db.query(sql, prepare, function (err, result) {
+            db.query(sql,prepare, function (err, result) {
                 if (err) reject(err);
                 // console.log('result==========',result[0])
                 else{
@@ -128,7 +141,14 @@ module.exports = {
         return new Promise ((resolve,reject)=>{
             sql = `
             SELECT
-                *
+                article_id,
+                article_headline,
+                DATE_FORMAT(article_date, '%d. %M %Y KL. %k:%i:%S') AS article_date,
+                article_views,
+                article_text,
+                fk_article_author,
+                fk_article_category,
+                article_comment_count
             FROM
                 tb_articles
             WHERE
@@ -148,10 +168,8 @@ module.exports = {
             sql = `
             SELECT
                 *
-            FROM(
+            FROM
                 tb_articles
-            INNER JOIN
-                tb_category ON fk_article_category = category_id )
             WHERE
                 fk_article_category = ?
             `

@@ -43,6 +43,24 @@ module.exports = {
             })
         })
     },
+    comment: function(id){
+        return new Promise ((resolve,reject)=>{
+            sql = `
+                DELETE FROM
+                    tb_comments
+                WHERE
+                    comment_id = ?
+            `
+            console.log(id)
+            db.execute(sql,[id],function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
     sponser: function(sponser_id){
         return new Promise ((resolve,reject)=>{
             sql = `

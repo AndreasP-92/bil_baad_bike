@@ -5,6 +5,7 @@ const update        = require('../services/update');
 
 module.exports = (server) => {
 
+// MAIN =========================================
 
     server.get('/arkivet/:page',async function(req,res){
 
@@ -15,6 +16,8 @@ module.exports = (server) => {
         var articles        = await getAll.allArticlesOffset(page);
         var mostRead        = await getAll.mostRead();
         var articleCount    = await getAll.articles()
+        var ads             = await getAll.sponsers();
+
         console.log(articles)
         try{
 
@@ -24,14 +27,17 @@ module.exports = (server) => {
                 'nav'           : nav,
                 'articles'      : articles,
                 'articleCount'  : articleCount,
-                'mostRead'      : mostRead
+                'mostRead'      : mostRead,
+                'ads'           : ads
                 
             })
         }catch(e){
          console.log(e)   
         }
     });
-// SHOW SPECIFIC ARTICLE ------------------------------
+
+// SHOW SPECIFIC ARTICLE ==============================
+
     server.get('/arkivet/artikel/:id',async function(req,res){
 
         var articleId       = req.params.id;
@@ -43,6 +49,8 @@ module.exports = (server) => {
         var views = 1 + article[0].article_views;
         var insertView      = await update.views(views, articleId);
         var mostRead        = await getAll.mostRead();
+        var ads             = await getAll.sponsers();
+
 
         console.log(article)
         try{
@@ -53,7 +61,8 @@ module.exports = (server) => {
                 'nav'           : nav,
                 'article'       : article,
                 'comment'       : comment,
-                'mostRead'      : mostRead
+                'mostRead'      : mostRead,
+                'ads'           : ads
                 
             })
         }catch(e){
@@ -65,16 +74,17 @@ module.exports = (server) => {
     server.post('/JSON/post/comment/:id', async function(req,res){
         console.log('PARAMS=============',req.params)
         console.log('BODY=============',req.body)
-        articleId = req.params.id
+        articleId       = req.params.id
         commentName     = req.body.name;
         commentEmail    = req.body.email;
         comment         = req.body.comment; 
-        // insertComment   = 1
+        // insertComment   = parseInt(1) 
+        console.log('insertComment===',insertComment)
         try {
             var postComment     = await insert.comment(articleId, commentName, commentEmail, comment);
             var article         = await getAllWhere.article(articleId);
             var insertComment   = article[0].article_comment_count + 1;
-            console.log(insertComment)
+            console.log(article)
             var commentCount    = await update.commentCount(insertComment, articleId);
             res.redirect('/arkivet/artikel/'+articleId)
         } catch (error) {

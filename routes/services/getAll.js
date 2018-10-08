@@ -19,7 +19,62 @@ module.exports = {
             })
         })
     },
+    sponserText: function(){
+        return new Promise ((resolve,reject)=>{
+            sql = `
+            SELECT
+                *
+            FROM
+                tb_sponser_site
+            `
+            db.query(sql,function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
+    sponserSale: function(){
+        return new Promise ((resolve,reject)=>{
+            sql = `
+            SELECT
+                *
+            FROM
+                tb_sponser_price
+            `
+            db.query(sql,function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
     sponsers: function(){
+        return new Promise ((resolve,reject)=>{
+            sql = `
+            SELECT
+                *
+            FROM
+                tb_sponsers
+            ORDER BY
+                rand()
+            LIMIT
+                4
+            `
+            db.query(sql,function(err,data){
+                if(err){
+                    reject(err)
+                }else{
+                    resolve(data)
+                }
+            })
+        })
+    },
+    sponsersALL: function(){
         return new Promise ((resolve,reject)=>{
             sql = `
             SELECT
@@ -174,7 +229,7 @@ module.exports = {
             SELECT
                 article_id,
                 article_headline,
-                article_date,
+                DATE_FORMAT(article_date, '%d. %M %Y KL. %k:%i:%S') AS article_date,
                 article_views,
                 article_comment_count,
                 SUBSTRING(article_text, 1, 500) AS article_text,
@@ -182,7 +237,9 @@ module.exports = {
                 fk_article_category
                 FROM
                     tb_articles 
-
+                ORDER BY
+                    article_id DESC
+                limit 6
                 `;
             db.query(sql, function (err, data){
                 console.log('asd==========',data)
@@ -208,13 +265,16 @@ module.exports = {
             SELECT 
                 article_id,
                 article_headline,
-                article_date,
+                DATE_FORMAT(article_date, '%d. %M %Y KL. %k:%i:%S') AS article_date,
                 article_views,
                 SUBSTRING(article_text, 1, 500) AS article_text,
                 fk_article_author,
-                fk_article_category
-            FROM
+                fk_article_category,
+                article_comment_count
+            FROM(
                 tb_articles  
+                INNER JOIN tb_category ON fk_article_category = category_id
+            )
             WHERE
                 fk_article_category IN (${category}) 
             LIMIT
@@ -240,11 +300,12 @@ module.exports = {
             SELECT 
                 article_id,
                 article_headline,
-                article_date,
+                DATE_FORMAT(article_date, '%d. %M %Y KL. %k:%i:%S') AS article_date,
                 article_views,
                 SUBSTRING(article_text, 1, 500) AS article_text,
                 fk_article_author,
-                fk_article_category
+                fk_article_category,
+                article_comment_count
             FROM
                 tb_articles 
             LIMIT

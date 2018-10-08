@@ -1,8 +1,10 @@
-const getAll        = require('../services/getAll');
-const getOne        = require('../services/getone');
-const getAllWhere   = require('../services/getAllWhere');
-const deleteItem    = require('../services/delete');
-const update        = require('../services/update');
+const getAll            = require('../services/getAll');
+const getOne            = require('../services/getone');
+const getAllWhere       = require('../services/getAllWhere');
+const deleteItem        = require('../services/delete');
+const update            = require('../services/update');
+const authenticate      = require('../../middleware/authenticate');
+
 
 module.exports = (server) => {
 
@@ -10,7 +12,7 @@ module.exports = (server) => {
 
 // SHOW ALL USERS =======================================
 
-    server.get('/admin/users', async function(req,res){
+    server.get('/admin/users' , async function(req,res){
         let userSite ="allUsers"
         try{
             const Users = await getAll.users();
@@ -38,7 +40,7 @@ module.exports = (server) => {
             // const Users = await getOne.user(userId);
             const author    = await getAllWhere.author(userId);
             const category  = await getAll.category();
-            console.log(author)
+            console.log(category)
 
 
             // res.send()
@@ -53,6 +55,8 @@ module.exports = (server) => {
         }
 
     })
+
+// POST USER =========================================
 
     server.post('/JSON/update/author/:id', async function(req,res){
 
@@ -85,6 +89,7 @@ module.exports = (server) => {
                     var sampleFile = req.files.sampleFile
                     console.log(sampleFile.name)
                     await update.author(authorId, name, userRole, email, sampleFile, textBox, category);
+                    await update.user(userRole, email)
                     res.redirect('/admin/users')
                     
                 } catch (error) {

@@ -1,0 +1,12 @@
+<form action="/JSON/update/sponser/<%= sponser[0].sponsers_id %>" method="POST" encType="multipart/form-data">
+    <input type="text" name="name" class="form-control input__field" value="<%= sponser[0].sponsers_name %>">
+    <input type="file" name="sampleFile" class="form-control input__field" value="/resources/media/ads/sponsers/bike_ad_4.gif">
+    <select name="category" id="">
+        <% category.forEach(function(elm){ %>
+            <option value="<%= elm.category_id %>"><%= elm.category_name %></option>
+
+        <% }) %>
+    </select>
+    <input type="submit" name="sub" value="Slet">
+    <input type="submit" name="sub" value="Opdater Sponser">
+</form>

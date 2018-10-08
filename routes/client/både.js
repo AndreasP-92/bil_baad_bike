@@ -14,6 +14,7 @@ module.exports = (server) => {
         var articles        = await getAll.articleOffset(req.params.page, category);
         var articleCategory = await getAllWhere.articleCategory(category);
         var mostRead        = await getAll.mostRead();
+        var ads             = await getAll.sponsers();
 
         try{
         res.render('pages/index/både',{
@@ -22,7 +23,9 @@ module.exports = (server) => {
             'nav'               : nav,
             'articles'          : articles,
             'articleCategory'   : articleCategory,
-            'mostRead'          : mostRead
+            'mostRead'          : mostRead,
+            'ads'               : ads
+
         })
         }catch(e){
             console.log(e)

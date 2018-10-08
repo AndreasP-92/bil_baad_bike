@@ -16,22 +16,24 @@
 <body>
     <div class="container">
         <div class="card card-container">
-            <h2 class="login-register-title">Register</h2>            
+            <h2 class="login-register-title">Registrer</h2>            
             <p id="profile-name" class="profile-name-card"></p>
             <form class="form-signin" method="post" action="/user/post" id="registerForm" encType="multipart/form-data">
 <!-- USERNAME ===================== -->
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" name="username" id="login__username" class="form-control input__field" placeholder="Username" required>
-                <div id="userValid"></div>			
+                <input type="text" name="username" id="login__username" class="form-control input__field" placeholder="Brugernavn" required>
+                <div id="userValid" class="valid"></div>			
 <!-- PASSWORD ===================== -->
 				<input type="password"  class="form-control input__field" id="password01" name="passphrase" placeholder="Password" required>
-				<div id="passwordValid"></div>							
-                <input type="password"  class="form-control input__field" id="password02" placeholder="Re enter Password" required>
+				<div id="passwordValid" class="valid"></div>							
+                <input type="password"  class="form-control input__field" id="password02" placeholder="Gentag Password" required>
 <!-- NAME ===================== -->
+                <div id="name_valid" class="valid"></div>							
                 <span id="reauth-email" class="reauth-email"></span>
-                <input type="text" name="name" id="login__username" class="form-control input__field" placeholder="Your Name" required>
+                <input type="text" name="name" id="name" class="form-control input__field" placeholder="Navn" required>
 <!-- EMAIL ===================== -->
-                <input type="email"  name="email" class="form-control input__field" id="email" placeholder="You@email.com" required>
+                <div id="email_valid" class="valid"></div>							
+                <input type="email"  name="email" class="form-control input__field" id="email" placeholder="navn@bbbmag.dk" required>
 <!-- KATEGORI ========================== -->
                 <select name="category" id="">
                     <% category.forEach(function(elm){ %>
@@ -39,14 +41,18 @@
                     <% }) %>
                 </select>
 <!-- IMAGE OPLOAD ===================== -->
-                <input type="file" name="sampleFile" class="form-control input__field">
+                <div id="file_valid" class="valid"></div>
+                <input type="file" name="sampleFile" id="file" class="form-control input__field">
+                							
 <!-- TEXT ===================== -->
-                <textarea name="text" id="" class="form-control input__field" cols="30" rows="10"></textarea>
+                <div id="textbox_valid" class="valid"></div>							
+                <textarea name="text" id="textbox" class="form-control input__field" cols="30" rows="10" placeholder="Profil Tekst"></textarea>
                 <div id="remember" class="checkbox">
+
                 </div>
-                <button class="btn btn-lg btn-primary btn-block btn-signin" id="submitButton" type="submit">Register</button>
+                <button class="btn btn-lg btn-primary btn-block btn-signin" id="submitButton" type="submit">Registrer</button>
             </form><!-- /form -->
-            <a href="/" class="forgot-password"><i class="fa fa-close"></i> Cancel Registration</a>
+            <a href="/admin" class=""><i class="fa fa-close"></i> Afbryd Registrering </a>
             
         </div><!-- /card-container -->
     </div><!-- /container -->
@@ -59,5 +65,5 @@
 </body>
 </html>
 <script src="/resources/js/login/register.js"></script>
-<script src="/resources/js/login/registerForm.js"></script>
+<!-- <script src="/resources/js/login/registerForm.js"></script> -->
 
